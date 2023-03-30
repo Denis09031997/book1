@@ -107,3 +107,18 @@ for line in fname_punctuation:
 
 print(counts_punctuation)
 print('-' * 25, 'P R A C T I C', '-' * 25)
+fhand_mails = open('text.txt')
+result_days_mails = {}
+
+for line in fhand_mails:
+    line = line.rstrip()
+    if not line.startswith('From '):
+        continue
+    word_mail = line.split()
+    for i in word_mail:
+        if word_mail[2] not in result_days_mails:
+            result_days_mails[word_mail[2]] = 1
+        else:
+            result_days_mails[word_mail[2]] += 1
+
+print(result_days_mails)
