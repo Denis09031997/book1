@@ -122,3 +122,48 @@ for line in fhand_mails:
             result_days_mails[word_mail[2]] += 1
 
 print(result_days_mails)
+print('-' * 25, 'УПРАЖНЕНИЕ 3', '-' * 25)
+fhand_email_addres = open('text.txt')
+counts_email_addres = {}
+
+for i in fhand_email_addres:
+    i = i.rstrip()
+    if not i.startswith('From'):
+        continue
+    addres_mail = i.split()
+    for mail in addres_mail:
+        if addres_mail[1] not in counts_email_addres:
+            counts_email_addres[addres_mail[1]] = 1
+        else:
+            counts_email_addres[addres_mail[1]] += 1
+
+print(f'Писем пришло: {counts_email_addres}')
+print('-' * 25, 'УПРАЖНЕНИЕ 4', '-' * 25)
+
+print(counts_email_addres)
+counts_write = 0
+counts_autor = ''
+for i in counts_email_addres:
+    if counts_email_addres[i] > counts_write:
+        counts_write = counts_email_addres[i]
+        counts_autor = i
+print('Result =', counts_autor, counts_write)
+print('-' * 25, 'УПРАЖНЕНИЕ 5', '-' * 25)
+fhand_domen = open('text.txt')
+count_doments = 0
+domen = {}
+for i in fhand_domen:
+    i = i.rstrip()
+    if not i.startswith('From'):
+        continue
+    domen_list = i.split()
+    for j in domen_list:
+        if '@' not in j:
+            continue
+        index = j.index('@')
+        if domen_list[1][index + 1:] not in domen:
+            domen[domen_list[1][index + 1:]] = 1
+        else:
+            domen[domen_list[1][index + 1:]] += 1
+
+print(f'Итог 5го упражнения:{domen}')
