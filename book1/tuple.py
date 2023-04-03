@@ -88,10 +88,7 @@ print('Сортировка:')
 l_dic = []
 
 for k, v in d_dic.items():
-    print(f'd_dic.items() = {d_dic.items()}')
-    print(f'k = {k}, v = {v}')
     l_dic.append((v, k))
-    print(f'l_dic = {l_dic}')
     l_dic.sort(reverse=True)
 
 print(f'res = {l_dic}')
@@ -117,3 +114,85 @@ lst_romeo.sort(reverse=True)
 
 for k, v in lst_romeo[:10]:
     print(k, v)
+
+print('-' * 120)
+print('Практика')
+print('-' * 120)
+print('УПРАЖНЕНИЕ 1')
+file = input('Enter file name: ')
+fhand_email_addres = open(file)
+counts_email_addres = {}
+
+for i in fhand_email_addres:
+    i = i.rstrip()
+    if not i.startswith('From'):
+        continue
+    addres_mail = i.split()
+    for mail in addres_mail:
+        if addres_mail[1] not in counts_email_addres:
+            counts_email_addres[addres_mail[1]] = 1
+        else:
+            counts_email_addres[addres_mail[1]] += 1
+
+print(f'Писем пришло: {counts_email_addres}')
+lst_mails = []
+for k, v in list(counts_email_addres.items()):
+    lst_mails.append((v, k))
+
+lst_mails.sort()
+print(f'Меньше всего писем от - {lst_mails[0]},'
+      f'больше всего от - {lst_mails[-1]}')
+print('-' * 120)
+print('УПРАЖНЕНИЕ 2')
+print('-' * 120)
+file_hour = input('Enter file name: ')
+fhand_hour = open(file)
+counts_hour = {}
+
+for line in fhand_hour:
+    line = line.rstrip()
+    if not line.startswith('From'):
+        continue
+    line = line.split()
+    if len(line) > 2:
+        line = line[5].split(':')
+        for i in line:
+            if line[0] not in counts_hour:
+                counts_hour[line[0]] = 1
+            else:
+                counts_hour[line[0]] += 1
+
+lst_hour = []
+for k, v in list(counts_hour.items()):
+    lst_hour.append((k, v))
+
+lst_hour.sort()
+
+print(f'Результат упражнения 2 = {lst_hour}')
+print('-_-' * 25)
+print('УПРАЖНЕНИЕ 3')
+print('-_-' * 25)
+
+fhand_letter = open('romeo-full.txt')
+counts_letter = {}
+for i in fhand_letter:
+    i = i.translate(str.maketrans('', '', string.punctuation))
+    i = i.lower()
+    text_line = i.split()
+    if len(text_line) == 0:
+        continue
+    for j in text_line:
+        for char in j:
+            if char not in counts_letter:
+                counts_letter[char] = 1
+            else:
+                counts_letter[char] += 1
+
+lst_char = []
+
+for k, v in list(counts_letter.items()):
+    lst_char.append((v, k))
+
+lst_char.sort(reverse=True)
+
+print('Итог упражнения 3 = ', lst_char, len(lst_char))
