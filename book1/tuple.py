@@ -173,7 +173,7 @@ print('-_-' * 25)
 print('УПРАЖНЕНИЕ 3')
 print('-_-' * 25)
 
-fhand_letter = open('romeo-full.txt')
+fhand_letter = open('Anna.txt')
 counts_letter = {}
 for i in fhand_letter:
     i = i.translate(str.maketrans('', '', string.punctuation))
