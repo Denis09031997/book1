@@ -116,4 +116,3 @@ for i in tags:
     print(i.get('href', None))
 
 print('-' * 200)
-
